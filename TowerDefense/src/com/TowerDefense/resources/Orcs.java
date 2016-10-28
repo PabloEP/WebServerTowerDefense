@@ -23,6 +23,7 @@ public class Orcs {
 	@Produces(MediaType.TEXT_HTML)
 	public String enviarHTMLOrcos(){
 		return "<html>" + "<title>" + "Orcos" + "</title>"
-		+ "<body><h1>" + "Orcos html" + "</body></h1>" + "</html";
-	}
+		+ "<body><h1><font color=#008000>" + "Callese" + "</h1></font></body>" 
+		+ "<big><h2><font color=#901490>" + "Perra" + "</h2></font></big>" + "</html";
+	} 
 }
