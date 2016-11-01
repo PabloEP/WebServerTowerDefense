@@ -1,12 +1,17 @@
 package com.TowerDefense.resources;
 
+import java.util.Arrays;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import com.TowerDefense.resources.PoblacionEnemigos;
 
 @Path("/orcos")
-public class Orcs {
+public class Orcs {	
+	PoblacionEnemigos Orcos = new PoblacionEnemigos("orcos");
+	
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	public String enviarPlainOrcos(){
@@ -22,8 +27,19 @@ public class Orcs {
 	@GET
 	@Produces(MediaType.TEXT_HTML)
 	public String enviarHTMLOrcos(){
+		int[][] oleada = new int[10][5];		
+		oleada = Orcos.Obtener(10);
+		String pob = "";
+		for (int i = 0; i < 10; i++) {
+			if (i < 9) {
+				pob += Arrays.toString(oleada[i]) + ", ";
+			} else {
+				pob += Arrays.toString(oleada[i]);
+			}
+		}
 		return "<html>" + "<title>" + "Orcos" + "</title>"
-		+ "<body><h1><font color=#008000>" + "Callese" + "</h1></font></body>" 
-		+ "<big><h2><font color=#901490>" + "Perra" + "</h2></font></big>" + "</html";
+		+ "<body><h1><font color=#008000>" + pob + "</h1></font></body>"
+		+ "<body><h1><font color=#008900>" + Arrays.toString(oleada) + "</h1></font></body>"
+		+ "</html";
 	} 
 }

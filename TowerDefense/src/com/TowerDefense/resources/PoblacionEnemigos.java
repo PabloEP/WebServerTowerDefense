@@ -5,13 +5,6 @@ import java.util.Random;
 import java.util.*;
 
 public class PoblacionEnemigos {
-	int FILAS = 600, COLUMNAS = 5, cantHIJOS = 20;
-	int[][] POBLACION = new int[FILAS][COLUMNAS];
-	int GENERACIONES = 50;
-	int genActual = 0;
-	int lastPost = 0;
-	Random rnd = new Random();
-	String tipo;
 	/*
 	 * j0 = Vida                            
 	 * j1 = Resistencia a Flechas            
@@ -29,6 +22,13 @@ public class PoblacionEnemigos {
 	 * pM = porcentaje de la resistencia a la magia
 	 * pA = porcentaje de la resistencia a la artilleria
 	 */	
+	int FILAS = 600, COLUMNAS = 5, cantHIJOS = 20;
+	int[][] POBLACION = new int[FILAS][COLUMNAS];
+	int GENERACIONES = 50;
+	int genActual = 0;
+	int lastPost = 0;
+	Random rnd = new Random();
+	String tipo;
 	double pV;
 	double pF;
 	double pM;
@@ -167,17 +167,17 @@ public class PoblacionEnemigos {
 				}
 			}
 		}
-		Ordenar(POBLACION);
+		Ordenar();
 
 	}
 
-	public void Ordenar(int[][] list) {
+	public void Ordenar() {
 		for (int i = 0; i < lastPost - 1; i++) {
 			for (int j = 0; j < lastPost - 1; j++) {
-				if (list[j][4] < list[j + 1][4]) {
-					int[] temp = list[j + 1];
-					list[j + 1] = list[j];
-					list[j] = temp;
+				if (POBLACION[j][4] < POBLACION[j + 1][4]) {
+					int[] temp = POBLACION[j + 1];
+					POBLACION[j + 1] = POBLACION[j];
+					POBLACION[j] = temp;
 
 				}
 			}
@@ -212,7 +212,6 @@ public class PoblacionEnemigos {
 			mA = (int) (rnd.nextInt((100 - 0) + 1) + 0);
 			// System.out.println(mV + " " + mF + " " + mM + " " + mA);
 			for (int j = 0; j < 5; j++) {
-
 				switch (j) {
 				case 0:
 					if (mV <= MUTACION) {
@@ -261,7 +260,7 @@ public class PoblacionEnemigos {
 		}
 		lastPost += cant;
 		genActual += 1;
-		Ordenar(POBLACION);
+		Ordenar();
 	}
 	
 	public int[][] Obtener(int cant) {

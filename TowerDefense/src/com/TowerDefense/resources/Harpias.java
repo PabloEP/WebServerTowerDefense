@@ -1,5 +1,7 @@
 package com.TowerDefense.resources;
 
+import java.util.Arrays;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -7,6 +9,7 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/harpias")
 public class Harpias {
+	PoblacionEnemigos harpias = new PoblacionEnemigos("harpias");
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	public String enviarPlainHarpias(){
@@ -22,7 +25,19 @@ public class Harpias {
 	@GET
 	@Produces(MediaType.TEXT_HTML)
 	public String enviarHTMLHarpias(){
+		int[][] oleada = new int[10][5];		
+		oleada = harpias.Obtener(10);
+		String pob = "";
+		for (int i = 0; i < 10; i++) {
+			if (i < 9) {
+				pob += Arrays.toString(oleada[i]) + ", ";
+			} else {
+				pob += Arrays.toString(oleada[i]);
+			}
+		}
 		return "<html>" + "<title>" + "Harpias" + "</title>"
-		+ "<body><h1>" + "Harpias html" + "</body></h1>" + "</html";
+		+ "<body><h1><font color=#008000>" + pob + "</h1></font></body>"
+		+ "<body><h1><font color=#008900>" + Arrays.toString(oleada) + "</h1></font></body>"
+		+ "</html";
 	}
 }
